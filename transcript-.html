@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cola Executor</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0f0f0f;
+      color: #ffffff;
+    }
+
+    #video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+      object-fit: cover;
+      filter: brightness(0.3) contrast(1.3) saturate(1.2);
+      background-color: #0f0f0f;
+    }
+
+    .content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .header {
+      position: absolute;
+      top: 40px;
+      text-align: center;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .header h1 {
+      font-size: 56px;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      animation: glow 3s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff;
+      }
+      to {
+        text-shadow: 0 0 20px #00ffff, 0 0 40px #00ffff;
+      }
+    }
+
+    .download-btn, .discord-btn {
+      background: #ff00ff;
+      color: white;
+      font-size: 24px;
+      padding: 20px 40px;
+      border: none;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: transform 0.1s ease, box-shadow 0.2s ease;
+      box-shadow: 0 0 20px #ff00ff;
+      margin: 15px;
+    }
+
+    .discord-btn {
+      background: #7289da;
+      box-shadow: 0 0 20px #7289da;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <video autoplay muted loop id="video-bg">
+    <source src="https://cdn.coverr.co/videos/coverr-glowing-lights-4230/1080p.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+  <div class="header">
+    <h1>Cola Executor</h1>
+  </div>
+
+  <div class="content">
+    <button class="download-btn" id="downloadBtn">Download</button>
+    <a href="https://discord.gg/ZHNFgjeyCJ" target="_blank">
+      <button class="discord-btn">Join Discord</button>
+    </a>
+  </div>
+
+  <script>
+    const btn = document.getElementById('downloadBtn');
+
+    document.addEventListener('mousemove', (e) => {
+      const { clientX, clientY } = e;
+      const { innerWidth, innerHeight } = window;
+
+      const x = (clientX - innerWidth / 2) / 25;
+      const y = (clientY - innerHeight / 2) / 25;
+
+      btn.style.transform = `translate(${x}px, ${y}px)`;
+    });
+  </script>
+</body>
+</html>
